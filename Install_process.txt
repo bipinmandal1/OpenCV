@@ -1,0 +1,57 @@
+Open terminal
+Type cd and press enter [the command cd is equivalent to cd ~ which is equivalent to cd /home/apoorve/]
+Ensure that you have proxy set up both in your system as well in your terminal.(If required)
+
+3a. System proxy - go to system settings from the top right, then click the Network Icon, then go to the Proxy tab and enter 172.16.2.30 (server) and 8080 (port) in all fields (HTTP, HTTPS, FTP, SOCKS) (For IIT Kharagpur only) 
+
+3b. In the terminal, type these lines in the terminal with suitable changes - 
+	cd ~ [changes the present working directory to home]
+	touch .bashrc [touch command is used to create a new file, just like mkdir is used to create a new directory, so this command will create a new file called .bashrc in the home directory]
+[don’t forget to replace username and password with those that you use to log in to the Wi-fi]
+
+echo ‘export http_proxy=”http://username:password@172.16.2.30:8080”’ >> ~/.bashrc
+
+echo ‘export https_proxy=”https://username:password@172.16.2.30:8080”’ >> ~/.bashrc
+
+[type man echo in the terminal to read the manual page of echo, similarly man command_name can be used to find the manual page for any Ubuntu (Unix) command, which is a very handy and good tool to know how to use commands without having to remember their syntax]
+
+Type mkdir vision [create a folder called vision, in our present working directory, which should be the home directory]
+
+
+Change the directory to the vision directory by cd vision 
+
+
+Copy and paste the following commands in the terminal and make sure each command completes successfully before we put in the next one. All these commands install the required dependencies for OpenCV - 
+
+6a. sudo apt-get install build-essential
+
+6b. sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+
+6c. sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+
+6d. git clone https://github.com/opencv/opencv.git
+
+
+You will now see an opencv folder inside your vision folder [which you can confirm by listing all files by using the command ls]
+
+
+Change your directory to the opencv directory, cd opencv [or whatever the name of the folder is].
+
+
+Create a folder inside the opencv directory called build and change your directory to the build directory.
+9a. mkdir build
+9b. cd build 
+
+
+Paste the following command [ensure you are in /home/apoorve/vision/opencv/build/ by checking your pwd (present working directory)] -
+
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
+
+
+Then the next command after the successful completion of the last command - 
+
+make -j7 [here 7 represents 7 jobs at once and is used to fasten up the process. Incase you have a slower machine, use -j4 or -j2]
+
+
+
+sudo make install [ensure you are still in the build directory]
